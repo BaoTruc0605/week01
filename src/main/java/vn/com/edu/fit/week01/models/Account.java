@@ -1,11 +1,22 @@
 package vn.com.edu.fit.week01.models;
 
+import vn.com.edu.fit.week01.enums.Status;
+
 public class Account {
     private String id;
     private String fullName;
     private String password;
     private String email;
     private String phone;
+    private Status status;
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
     public String getId() {
         return id;
@@ -50,12 +61,13 @@ public class Account {
     public Account() {
     }
 
-    public Account(String id, String fullName, String password, String email, String phone) {
+    public Account(String id, String fullName, String password, String email, String phone, Status status) {
         this.id = id;
         this.fullName = fullName;
         this.password = password;
         this.email = email;
         this.phone = phone;
+        this.status = status;
     }
 
     @Override

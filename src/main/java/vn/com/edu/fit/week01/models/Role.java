@@ -1,10 +1,12 @@
 package vn.com.edu.fit.week01.models;
 
+import vn.com.edu.fit.week01.enums.Status;
+
 public class Role {
     private String id;
     private String name;
     private String desciption;
-    private String status;
+    private Status status;
 
     public String getId() {
         return id;
@@ -18,8 +20,12 @@ public class Role {
         return desciption;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public void setId(String id) {
@@ -34,14 +40,12 @@ public class Role {
         this.desciption = desciption;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+
 
     public Role() {
     }
 
-    public Role(String id, String name, String desciption, String status) {
+    public Role(String id, String name, String desciption, Status status) {
         this.id = id;
         this.name = name;
         this.desciption = desciption;
@@ -58,3 +62,5 @@ public class Role {
                 '}';
     }
 }
+
+
