@@ -1,12 +1,27 @@
 package vn.com.edu.fit.week01.models;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
+
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name="log")
 public class Logs {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "bigint(20)", nullable = false)
     private long id;
+
+    @Column(name = "account_id", nullable = false,columnDefinition = "varchar(50)")
     private String accountId;
+    @Column(name = "login_time", nullable = false,columnDefinition = "DATETIME")
+    @ColumnDefault("current_timestamp()")
     private LocalDateTime loginTime;
+    @Column(name = "logout_time", nullable = false,columnDefinition = "DATETIME")
+    @ColumnDefault("current_timestamp()")
     private LocalDateTime logoutTime;
+    @Column(columnDefinition = "varchar(250)", nullable = false)
     private String notes;
 
     public Logs() {

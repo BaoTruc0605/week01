@@ -1,46 +1,60 @@
 package vn.com.edu.fit.week01.models;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 import vn.com.edu.fit.week01.enums.IsGrant;
 
+@Entity
+@Table(name = "grant_access")
 public class GrantAccess {
-    private String accountId;
-    private String roleId;
+    @Id
+    @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+    private Role role;
+    @Id
+    @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    private Account account;
+
+    @Column(name = "is_grant", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     private IsGrant isGrant;
+    @Column(name = "note", columnDefinition = "varchar(250)")
     private String note;
 
     public GrantAccess() {
 
     }
 
-    public GrantAccess(String accountId, String roleId, IsGrant isGrant, String note) {
-        this.accountId = accountId;
-        this.roleId = roleId;
+    public GrantAccess(Role role, Account account, IsGrant isGrant, String note) {
+        this.role = role;
+        this.account = account;
         this.isGrant = isGrant;
         this.note = note;
     }
 
-    public String getAccountId() {
-        return accountId;
+    public Role getRole() {
+        return role;
     }
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
-    public String getRoleId() {
-        return roleId;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
-    public IsGrant isGrant() {
+    public IsGrant getIsGrant() {
         return isGrant;
     }
 
-    public void setGrant(IsGrant grant) {
-        isGrant = grant;
+    public void setIsGrant(IsGrant isGrant) {
+        this.isGrant = isGrant;
     }
 
     public String getNote() {
@@ -54,8 +68,8 @@ public class GrantAccess {
     @Override
     public String toString() {
         return "GrantAccess{" +
-                "accountId='" + accountId + '\'' +
-                ", roleId='" + roleId + '\'' +
+                "role=" + role +
+                ", account=" + account +
                 ", isGrant=" + isGrant +
                 ", note='" + note + '\'' +
                 '}';

@@ -1,13 +1,24 @@
 package vn.com.edu.fit.week01.models;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 import vn.com.edu.fit.week01.enums.Status;
-
+@Entity
+@Table(name = "account")
 public class Account {
+    @Id
+    @Column(name = "account_id", nullable = false,columnDefinition = "varchar(50)")
     private String id;
+    @Column(name = "full_name", nullable = false,columnDefinition = "varchar(50)")
     private String fullName;
+    @Column(name = "password", nullable = false,columnDefinition = "varchar(50)")
     private String password;
+    @Column(name = "email",columnDefinition = "varchar(50)")
     private String email;
+    @Column(name = "phone",columnDefinition = "varchar(50)")
     private String phone;
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     private Status status;
 
     public Status getStatus() {

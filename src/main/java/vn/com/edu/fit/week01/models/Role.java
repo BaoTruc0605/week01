@@ -1,11 +1,21 @@
 package vn.com.edu.fit.week01.models;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 import vn.com.edu.fit.week01.enums.Status;
 
+@Entity
+@Table(name = "role")
 public class Role {
+    @Id
+    @Column(name = "role_id", nullable = false,columnDefinition = "varchar(50)")
     private String id;
+    @Column(name = "role_name", nullable = false,columnDefinition = "varchar(50)")
     private String name;
+    @Column(name = "description",columnDefinition = "varchar(50)")
     private String desciption;
+    @Column(name = "satus", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     private Status status;
 
     public String getId() {
