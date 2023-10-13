@@ -5,6 +5,9 @@ import org.hibernate.annotations.ColumnDefault;
 import vn.com.edu.fit.week01.enums.Status;
 @Entity
 @Table(name = "account")
+//@NamedQueries(
+//        @NamedQuery(name = "Account.findAll",query = "select a from Account a")
+//)
 public class Account {
     @Id
     @Column(name = "account_id", nullable = false,columnDefinition = "varchar(50)")
@@ -18,7 +21,7 @@ public class Account {
     @Column(name = "phone",columnDefinition = "varchar(50)")
     private String phone;
     @Column(name = "status", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+//    @Enumerated(EnumType.ORDINAL)
     private Status status;
 
     public Status getStatus() {
@@ -81,6 +84,21 @@ public class Account {
         this.status = status;
     }
 
+    public Account(String fullName) {
+        this.fullName = fullName;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Account{" +
+//                "id='" + id + '\'' +
+//                ", fullName='" + fullName + '\'' +
+//                ", password='" + password + '\'' +
+//                ", email='" + email + '\'' +
+//                ", phone='" + phone + '\'' +
+//                '}';
+//    }
+
     @Override
     public String toString() {
         return "Account{" +
@@ -89,6 +107,7 @@ public class Account {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", status=" + status +
                 '}';
     }
 }
